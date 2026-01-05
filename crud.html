@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Data Mahasiswa</title>
+  <style>
+    :root{
+      --primary:#0f766e;
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --danger:#ef4444;
+    }
+    *{box-sizing:border-box;font-family:Segoe UI,system-ui,sans-serif}
+    body{margin:0;background:var(--bg);color:var(--text);padding:30px}
+    h1{margin-bottom:20px}
+    .card{
+      background:var(--card);
+      padding:20px;
+      border-radius:16px;
+      box-shadow:0 10px 25px rgba(0,0,0,.08);
+      margin-bottom:20px;
+    }
+    button{
+      border:none;
+      border-radius:10px;
+      padding:8px 14px;
+      cursor:pointer;
+    }
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-danger{background:var(--danger);color:#fff}
+    .btn-secondary{background:#e5e7eb}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:15px;
+    }
+    th,td{padding:12px;text-align:left}
+    th{background:#eef2ff}
+    tr:not(:last-child){border-bottom:1px solid #e5e7eb}
+    .actions button{margin-right:6px}
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.5);
+      display:none;
+      align-items:center;
+      justify-content:center;
+    }
+    .modal-content{
+      background:var(--card);
+      padding:20px;
+      border-radius:16px;
+      width:100%;
+      max-width:400px;
+    }
+    .modal-content h3{margin-top:0}
+    .form-group{margin-bottom:12px}
+    label{display:block;font-size:14px;margin-bottom:4px}
+    input{
+      width:100%;
+      padding:10px;
+      border-radius:10px;
+      border:1px solid #d1d5db;
+    }
+  </style>
+</head>
+<body>
+
+<h1>CRUD Data Mahasiswa</h1>
+
+<div class="card">
+  <button class="btn-primary" onclick="openModal()">+ Tambah Mahasiswa</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Program Studi</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3 id="modalTitle">Tambah Mahasiswa</h3>
+    <div class="form-group">
+      <label>Nama</label>
+      <input type="text" id="nama">
+    </div>
+    <div class="form-group">
+      <label>NIM</label>
+      <input type="text" id="nim">
+    </div>
+    <div class="form-group">
+      <label>Program Studi</label>
+      <input type="text" id="prodi">
+    </div>
+    <button class="btn-primary" onclick="saveData()">Simpan</button>
+    <button class="btn-secondary" onclick="closeModal()">Batal</button>
+  </div>
+</div>
+
+<script>
+  let data = JSON.parse(localStorage.getItem("mahasiswa")) || [];
+  let editIndex = null;
+
+  function render(){
+    const tbody = document.getElementById("tableBody");
+    tbody.innerHTML = "";
+    data.forEach((mhs, i) => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${mhs.nama}</td>
+          <td>${mhs.nim}</td>
+          <td>${mhs.prodi}</td>
+          <td class="actions">
+            <button class="btn-primary" onclick="editData(${i})">Edit</button>
+            <button class="btn-danger" onclick="deleteData(${i})">Hapus</button>
+          </td>
+        </tr>
+      `;
+    });
+    localStorage.setItem("mahasiswa", JSON.stringify(data));
+  }
+
+  function openModal(){
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("modalTitle").innerText = "Tambah Mahasiswa";
+    document.getElementById("nama").value = "";
+    document.getElementById("nim").value = "";
+    document.getElementById("prodi").value = "";
+    editIndex = null;
+  }
+
+  function closeModal(){
+    document.getElementById("modal").style.display = "none";
+  }
+
+  function saveData(){
+    const nama = document.getElementById("nama").value;
+    const nim = document.getElementById("nim").value;
+    const prodi = document.getElementById("prodi").value;
+
+    if(!nama || !nim || !prodi){
+      alert("Semua field wajib diisi");
+      return;
+    }
+
+    if(editIndex === null){
+      data.push({nama, nim, prodi});
+    } else {
+      data[editIndex] = {nama, nim, prodi};
+    }
+
+    closeModal();
+    render();
+  }
+
+  function editData(index){
+    const mhs = data[index];
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("modalTitle").innerText = "Edit Mahasiswa";
+    document.getElementById("nama").value = mhs.nama;
+    document.getElementById("nim").value = mhs.nim;
+    document.getElementById("prodi").value = mhs.prodi;
+    editIndex = index;
+  }
+
+  function deleteData(index){
+    if(confirm("Yakin ingin menghapus data ini?")){
+      data.splice(index,1);
+      render();
+    }
+  }
+
+  render();
+</script>
+
+</body>
+</html>
