@@ -1,13 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Poltekpar Lombok</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icon -->
+    <link rel="icon" href="assets/logo.png">
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>This is a sample HTML document.</p>
-    <p>hdjad danadknda </p>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="container nav-content">
+        <h1 class="logo">Poltekpar Lombok</h1>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#program">Program</a></li>
+                <li><a href="#fasilitas">Fasilitas</a></li>
+                <li><a href="#kontak" class="btn-nav">Daftar</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle" id="menuToggle">☰</div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h2>Mencetak Profesional Pariwisata Masa Depan</h2>
+            <p>Politeknik Pariwisata Lombok berkomitmen menghasilkan lulusan unggul, berdaya saing global, dan siap industri.</p>
+            <div class="hero-btn">
+                <a href="#program" class="btn-primary">Lihat Program</a>
+                <a href="#about" class="btn-secondary">Profil Kampus</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="assets/hero.png" alt="Poltekpar Lombok">
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+    <div class="container">
+        <h3 class="section-title">Tentang Kami</h3>
+        <p class="section-desc">
+            Politeknik Pariwisata Lombok merupakan perguruan tinggi vokasi yang fokus pada pendidikan pariwisata,
+            perhotelan, dan industri kreatif berbasis kearifan lokal.
+        </p>
+    </div>
+</section>
+
+<!-- Program -->
+<section class="program" id="program">
+    <div class="container">
+        <h3 class="section-title">Program Studi</h3>
+
+        <div class="card-grid">
+            <div class="card">
+                <h4>Perhotelan</h4>
+                <p>Menghasilkan tenaga profesional di bidang hospitality dan manajemen hotel.</p>
+            </div>
+            <div class="card">
+                <h4>Usaha Perjalanan Wisata</h4>
+                <p>Fokus pada pengelolaan perjalanan wisata dan tour operator.</p>
+            </div>
+            <div class="card">
+                <h4>Kuliner</h4>
+                <p>Pengembangan kuliner lokal dan internasional berbasis industri.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fasilitas -->
+<section class="fasilitas" id="fasilitas">
+    <div class="container">
+        <h3 class="section-title">Fasilitas Kampus</h3>
+
+        <div class="fasilitas-grid">
+            <div class="fasilitas-item">Hotel Praktik</div>
+            <div class="fasilitas-item">Laboratorium Kuliner</div>
+            <div class="fasilitas-item">Ruang Praktik Pariwisata</div>
+            <div class="fasilitas-item">Perpustakaan Digital</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="kontak">
+    <div class="container cta-box">
+        <h3>Siap Bergabung Bersama Kami?</h3>
+        <p>Daftarkan diri Anda sekarang dan raih masa depan di industri pariwisata.</p>
+        <br>
+        <a href="#" class="btn-primary">Daftar Sekarang</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container footer-content">
+        <p>© 2026 Politeknik Pariwisata Lombok. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="script.js"></script>
 </body>
 </html>
